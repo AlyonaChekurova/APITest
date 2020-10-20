@@ -1,7 +1,7 @@
 package requests;
 
 import com.google.gson.Gson;
-import common.ConfProperties;
+import helpers.ConfProperties;
 import io.restassured.RestAssured;
 import models.FactModel;
 import models.FactsModel;
@@ -16,7 +16,7 @@ public class FactRequest {
 
     /**
      * Метод осуществляет запрос по указанному URL, получает JSON-файл, расположенный по данному адресу
-     * и возвращает полный перечень фактов и их атрибутов
+     * и возвращает список фактов со всеми атрибутами
      */
 
     public static List<FactModel> getFacts() {
@@ -25,6 +25,6 @@ public class FactRequest {
 
         FactsModel allFacts = new Gson().fromJson(response, FactsModel.class);
 
-        return allFacts.getAllFacts();
+        return allFacts.getAll();
     }
 }

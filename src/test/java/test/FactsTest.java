@@ -1,25 +1,21 @@
 package test;
 
-import common.ConfProperties;
 import common.FactsMethods;
+import helpers.ConfProperties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import requests.FactRequest;
 
 /**
  * Тестовый класс для проверки работы API ресурса
  */
 
 public class FactsTest {
-
     /**
-     * Метод вызывает методы для печати полного перечня фактов и получения имени пользователя, написавшего больше всего фактов,
-     * и проверяет его соответствие ожидаемому значению
+     * Метод вызывает метод получения имени пользователя, написавшего больше всего фактов, и проверяет его соответствие ожидаемому значению
      */
-
     @Test
     public void getFactsTest() {
-        FactsMethods.printAllFacts();
-
-        Assert.assertEquals(FactsMethods.mostWrittenBy(), ConfProperties.getProperty("expectedAuthor"));
+        Assert.assertEquals(FactsMethods.getMostWrittenBy(FactRequest.getFacts()), ConfProperties.getProperty("expectedAuthor"), "Ошибка! Полученное значение не совпадает с ожидаемым:");
     }
 }
